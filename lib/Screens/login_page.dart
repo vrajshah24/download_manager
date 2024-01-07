@@ -95,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                   sizedBox10(context),
                   CustomButton(
                     onPress: () async {
-                      ScreenNavigation.push(context, RegisterPage());
+                      ScreenNavigation.push(context, const RegisterPage());
                     },
                     btntext: "Register",
                     btnClr: Colors.white,

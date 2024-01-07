@@ -1,4 +1,5 @@
 import 'package:download_manager/Global%20Components/responsive.dart';
+import 'package:download_manager/Widgets/custom_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:download_manager/Global%20Components/colors.dart';
 import 'package:download_manager/Global%20Components/responsive.dart';
@@ -15,12 +16,20 @@ class HomePage extends StatelessWidget {
           showDialog(
             context: context,
             builder: (context) {
-              return Container(
-                width: getWidth(context),
-                height: getHeight(context),
-                child: AlertDialog(
-                  title: Column(
-                    children: [TextFormField()],
+              return Dialog(
+                child: Container(
+                  height: 500,
+                  // color: Colors.transparent.withOpacity(0.1),
+                  child: ClipPath(
+                    clipper: mainShape(),
+                    child: Container(
+                      color: Colors.white,
+                      width: getWidth(context),
+                      height: 140,
+                      child: Column(
+                        children: [],
+                      ),
+                    ),
                   ),
                 ),
               );
@@ -40,7 +49,7 @@ class HomePage extends StatelessWidget {
         width: getWidth(context),
         height: getHeight(context),
         padding: EdgeInsets.symmetric(
-            vertical: v30(context) + v10(context), horizontal: h20(context)),
+            vertical: v30(context) + v10(context), horizontal: h10(context)),
         child: Column(
           children: [
             Row(
@@ -55,6 +64,9 @@ class HomePage extends StatelessWidget {
               ],
             ),
             sizedBox20(context),
+            const DividerWithName(name: "Currently Downloading"),
+            sizedBox20(context),
+            const DividerWithName(name: "Downloads"),
           ],
         ),
       ),

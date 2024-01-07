@@ -12,7 +12,10 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MaterialApp(
-      routes: {'/': (context) => const LoginPage()},
+      routes: {
+        // '/': (context) => const LoginPage(),
+        '/': (context) => const NavBarMainHome(),
+      },
     ),
   );
 }

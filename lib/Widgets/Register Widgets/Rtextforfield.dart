@@ -4,22 +4,24 @@ import 'package:download_manager/Global%20Components/responsive.dart';
 import 'package:download_manager/Widgets/custom_heading.dart';
 
 class TextFormFieldforRegister extends StatelessWidget {
-  const TextFormFieldforRegister({
-    super.key,
-    required this.title,
-    required this.icon,
-    this.obsecure = false,
-    required this.hint,
-  });
+  const TextFormFieldforRegister(
+      {super.key,
+      required this.title,
+      required this.icon,
+      this.obsecure = false,
+      required this.hint,
+      required this.controller});
 
   final String title;
   final IconData icon;
   final bool obsecure;
   final String hint;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       obscureText: obsecure,
       style: TextStyle(
           color: secondaryColor, fontWeight: FontWeight.w800, fontSize: 16),
