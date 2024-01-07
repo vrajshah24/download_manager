@@ -19,28 +19,39 @@ class AuthsProvider extends ChangeNotifier {
       required String image}) async {
     await firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
-    await firebaseStorage
-        .ref()
-        .child('profile_pic')
-        .child(DateTime.now().toString())
-        .putFile(File(image));
+    Reference storageReference =
+        firebaseStorage.ref().child('images/${DateTime.now()}.png');
+    await storageReference.putFile(File(image));
+    String downloadURL = await storageReference.getDownloadURL();
+    // print(res);
     Map<String, dynamic> userData = {};
     userData['username'] = username;
     userData['first_name'] = firstName;
     userData['last_name'] = lastName;
-    userData['profile_pic'] = image;
+    userData['profile_pic'] = downloadURL;
     userData['email'] = email;
-    await firebaseFirestore.collection('users').add(userData);
+    var resp = await firebaseFirestore.collection('users').add(userData);
+    await loginUser(email: email, password: password);
     String uid = firebaseAuth.currentUser!.uid;
     MySharedPreferences.setInfo(userData, uid);
+    MySharedPreferences.getInfo();
   }
 
   loginUser({
     required String email,
     required String password,
   }) async {
-    await firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
+    try {
+      await firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+      var res = await firebaseFirestore
+          .collection('users')
+          .where('email', isEqualTo: email)
+          .get();
+      MySharedPreferences.getInfo();
+    } catch (e) {
+      print(e);
+    }
   }
 
   forgotPassword({

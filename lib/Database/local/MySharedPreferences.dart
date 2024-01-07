@@ -13,7 +13,7 @@ class MySharedPreferences {
       value.setString('first_name', userData['first_name']);
       value.setString('last_name', userData['last_name']);
       value.setString('profile_pic', userData['profile_pic']);
-      value.setString('u_id', userData['u_id']);
+      value.setString('u_id', uid);
     });
   }
 

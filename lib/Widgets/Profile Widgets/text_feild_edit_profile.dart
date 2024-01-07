@@ -1,39 +1,39 @@
-import 'package:flutter/material.dart';
 import 'package:download_manager/Global%20Components/colors.dart';
 import 'package:download_manager/Global%20Components/responsive.dart';
 import 'package:download_manager/Widgets/custom_heading.dart';
+import 'package:flutter/material.dart';
 
-class TextFormFieldforLogin extends StatelessWidget {
-  const TextFormFieldforLogin(
-      {super.key,
-      required this.title,
-      required this.icon,
-      this.obsecure = false,
-      required this.controller});
+class UpdateUserFields extends StatelessWidget {
+  const UpdateUserFields({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.initValue,
+  });
 
   final String title;
   final IconData icon;
-  final bool obsecure;
-  final TextEditingController controller;
+  final String initValue;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
-      obscureText: obsecure,
-      style: TextStyle(
-          color: secondaryColor, fontWeight: FontWeight.w800, fontSize: 18),
+      initialValue: initValue,
+      style: const TextStyle(
+          color: Colors.black, fontWeight: FontWeight.w800, fontSize: 16),
       decoration: InputDecoration(
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          alignLabelWithHint: true,
           label: CustomHeadingTitle(
             textString: title,
             textSize: 16,
-            textColor: secondaryColor,
+            textColor: Colors.black,
             textSpace: 0.4,
             textWeight: FontWeight.w500,
           ),
           prefixIcon: Icon(
             icon,
-            color: secondaryColor,
+            color: Colors.grey,
           ),
           contentPadding: EdgeInsets.symmetric(
               horizontal: h10(context), vertical: v10(context) + v5(context)),
@@ -41,11 +41,10 @@ class TextFormFieldforLogin extends StatelessWidget {
           disabledBorder: InputBorder.none,
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide:
-                  const BorderSide(color: Colors.transparent, width: 2)),
+              borderSide: const BorderSide(color: Colors.grey, width: 2)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: secondaryColor, width: 2)),
+              borderSide: BorderSide(color: subPrimaryColor, width: 2)),
           fillColor: Colors.white.withOpacity(0.4)),
     );
   }

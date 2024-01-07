@@ -1,3 +1,5 @@
+import 'package:download_manager/Global%20Components/screenNavigation.dart';
+import 'package:download_manager/Screens/edit_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:download_manager/Global%20Components/colors.dart';
 import 'package:download_manager/Global%20Components/responsive.dart';
@@ -126,7 +128,9 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               sizedBox20(context),
               CustomButton(
-                onPress: () {},
+                onPress: () {
+                  ScreenNavigation.push(context, const EditProfile());
+                },
                 btnClr: Colors.black87,
                 btntext: "Edit Profile",
                 btnTextSize: 20,
