@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1010455908932",
+    "project_id": "download-manager-9fcb6",
+    "storage_bucket": "download-manager-9fcb6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1010455908932:android:635a8934e8147a6e5c2211",
+        "android_client_info": {
+          "package_name": "com.example.download_manager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuvS2jvKdXRJbMPlo7ssx0klvNL9jNPrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
