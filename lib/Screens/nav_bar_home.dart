@@ -1,4 +1,3 @@
-import 'package:download_manager/Database/local/MySharedPreferences.dart';
 import 'package:flutter/material.dart';
 import 'package:download_manager/Global%20Components/colors.dart';
 import 'package:download_manager/Screens/home_page.dart';
@@ -16,7 +15,7 @@ class _NavBarMainHomeState extends State<NavBarMainHome> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> pages = [HomePage(), ProfilePage()];
+    List<Widget> pages = [const HomePage(), const ProfilePage()];
 
     return Scaffold(
       backgroundColor: backgroundColor,

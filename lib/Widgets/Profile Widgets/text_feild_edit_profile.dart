@@ -4,21 +4,23 @@ import 'package:download_manager/Widgets/custom_heading.dart';
 import 'package:flutter/material.dart';
 
 class UpdateUserFields extends StatelessWidget {
-  const UpdateUserFields({
-    super.key,
-    required this.title,
-    required this.icon,
-    required this.initValue,
-  });
+  const UpdateUserFields(
+      {super.key,
+      required this.title,
+      required this.icon,
+      required this.initValue,
+      required this.controller});
 
   final String title;
   final IconData icon;
   final String initValue;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: initValue,
+      controller: controller,
+      // initialValue: initValue,
       style: const TextStyle(
           color: Colors.black, fontWeight: FontWeight.w800, fontSize: 16),
       decoration: InputDecoration(

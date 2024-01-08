@@ -1,11 +1,14 @@
+import 'package:download_manager/Database/local/MySharedPreferences.dart';
 import 'package:download_manager/Global%20Components/screenNavigation.dart';
 import 'package:download_manager/Screens/edit_profile.dart';
+import 'package:download_manager/Screens/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:download_manager/Global%20Components/colors.dart';
 import 'package:download_manager/Global%20Components/responsive.dart';
 import 'package:download_manager/Widgets/Profile%20Widgets/option_tile.dart';
 import 'package:download_manager/Widgets/custom_button.dart';
 import 'package:download_manager/Widgets/custom_heading.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -78,7 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     // Username
 
                     CustomHeadingTitle(
-                      textString: "JohnDoe123",
+                      textString: MySharedPreferences.userName.toString(),
                       textSize: 24,
                       textColor: secondaryColor,
                       textWeight: FontWeight.w900,
@@ -97,7 +100,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           width: h10(context),
                         ),
                         CustomHeadingTitle(
-                          textString: "John Doe",
+                          textString: MySharedPreferences.firstName.toString() +
+                              " " +
+                              MySharedPreferences.lastName.toString(),
                           textSize: 20,
                           textColor: secondaryColor,
                           textWeight: FontWeight.w500,
@@ -116,7 +121,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           width: h10(context),
                         ),
                         CustomHeadingTitle(
-                          textString: "jdoe@exapmple.com",
+                          textString: MySharedPreferences.email.toString(),
                           textSize: 20,
                           textColor: secondaryColor,
                           textWeight: FontWeight.w500,
@@ -141,15 +146,23 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               sizedBox20(context),
               SettingsTile(
-                  name: "Settings", icon: Icon(Icons.settings), ontap: () {}),
+                  name: "Settings",
+                  icon: const Icon(Icons.settings),
+                  ontap: () {}),
               SettingsTile(
                   name: "Terms & Conditions",
-                  icon: Icon(Icons.edit_document),
+                  icon: const Icon(Icons.edit_document),
                   ontap: () {}),
               SettingsTile(
                   name: "Log Out",
-                  icon: Icon(Icons.logout_outlined),
-                  ontap: () {}),
+                  icon: const Icon(Icons.logout_outlined),
+                  ontap: () {
+                    SharedPreferences.getInstance().then((value) {
+                      value.setBool('isLoggedIn', false);
+                      ScreenNavigation.pushReplacement(
+                          context, const LoginPage());
+                    });
+                  }),
             ],
           ),
         ),

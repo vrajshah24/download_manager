@@ -11,12 +11,29 @@ class DownloadManagerDatabase {
     return res;
   }
 
-  static getAllLocallyDownloaded(DownloadModel downloadModel) async {
+  static getAllLocallyDownloaded() async {
+    var db = await openDatabase(databaseName);
+    var res = await db.transaction((txn) {
+      return txn.rawQuery("Select * from $downloadMaster where status = 0");
+    });
+    print(res);
+    if (res.isEmpty) {
+      return [];
+    } else {
+      return res.map((e) => DownloadModel.fromJson(e)).toList();
+    }
+  }
+
+  static getAllRemotelyDownloaded() async {
     var db = await openDatabase(databaseName);
     var res = await db.transaction((txn) {
       return txn.rawQuery("Select * from $downloadMaster where status = 1");
     });
-    return res;
+    if (res.isEmpty) {
+      return [];
+    } else {
+      return res.map((e) => DownloadModel.fromJson(e)).toList();
+    }
   }
 
   static updateStatusToDownloaded(int id) async {
